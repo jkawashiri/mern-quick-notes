@@ -29,6 +29,11 @@ export default function Notes({user}) {
         setNotes([...notes, newNote])
     }
 
+    async function deleteNote(noteId) {
+        await notesAPI.deleteItem(noteId)
+        setNotes(notes => notes.filter(note => note._id !== noteId))
+    }
+
     let buttonText = clicked ? '\u2193' : '\u2191'
     function onClick() {
         setClicked(clicked => !clicked )
@@ -40,7 +45,7 @@ export default function Notes({user}) {
             <div>
                 <button onClick={onClick}>{buttonText}</button>
                 {sortedNotes.map((note, idx) => (
-                    <Note note={note} key={idx} />
+                    <Note note={note} deleteNote={deleteNote} key={idx} />
                 ))}
             </div>
             :

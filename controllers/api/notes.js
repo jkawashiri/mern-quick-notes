@@ -2,7 +2,8 @@ const Note = require('../../models/note');
 
 module.exports = {
     index,
-    create
+    create,
+    delete: deleteNote
 }
 
 async function index(req, res,) {
@@ -22,4 +23,9 @@ async function create(req, res) {
         res.status(500).json({error: err.message})
         console.error(err)
     }
+}
+
+async function deleteNote(req, res) {
+    await Note.findByIdAndRemove(req.params.id)
+    res.json({message: "Note deleted successfully"})
 }

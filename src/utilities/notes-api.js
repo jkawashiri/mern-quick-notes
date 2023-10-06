@@ -8,3 +8,7 @@ export function getAll() {
 export function addItem(note) {
     return sendRequest(BASE_URL, 'POST', note)
 }
+
+export function deleteItem(noteId) {
+    return sendRequest(`${BASE_URL}/${noteId}`, 'DELETE')
+}
