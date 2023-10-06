@@ -3,6 +3,7 @@ const Note = require('../../models/note');
 module.exports = {
     index,
     create,
+    update,
     delete: deleteNote
 }
 
@@ -23,6 +24,13 @@ async function create(req, res) {
         res.status(500).json({error: err.message})
         console.error(err)
     }
+}
+
+async function update(req, res) {
+    const noteId = req.params.id
+    const updatedNoteData = req.body
+    const updatedNote = await Note.findByIdAndUpdate(noteId, updatedNoteData, {new: true})
+    res.json(updatedNote)
 }
 
 async function deleteNote(req, res) {

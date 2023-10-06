@@ -29,6 +29,11 @@ export default function Notes({user}) {
         setNotes([...notes, newNote])
     }
 
+    async function editNote(noteId, updatedNote) {
+        const newNote = await notesAPI.editItem(noteId, updatedNote)
+        setNotes(notes => notes.map(note => note._id === noteId ? newNote : note))
+    }
+
     async function deleteNote(noteId) {
         await notesAPI.deleteItem(noteId)
         setNotes(notes => notes.filter(note => note._id !== noteId))
@@ -45,7 +50,7 @@ export default function Notes({user}) {
             <div>
                 <button onClick={onClick}>{buttonText}</button>
                 {sortedNotes.map((note, idx) => (
-                    <Note note={note} deleteNote={deleteNote} key={idx} />
+                    <Note note={note} editNote={editNote} deleteNote={deleteNote} key={idx} />
                 ))}
             </div>
             :
