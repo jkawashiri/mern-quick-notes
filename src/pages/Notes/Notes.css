@@ -1,0 +1,25 @@
+.header {
+    text-decoration: underline;
+}
+
+.header-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle {
+    width: 5vmin;
+    height: 4vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-list {
+    list-style-position: outside;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

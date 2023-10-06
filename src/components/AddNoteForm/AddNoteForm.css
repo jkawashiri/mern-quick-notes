@@ -5,3 +5,9 @@
     align-items: center;
     margin: 10px;
 }
+
+textarea {
+    resize: none;
+    width: 30vmin;
+    height: 10vmin;
+}

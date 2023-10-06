@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import AddNoteForm from "../../components/AddNoteForm/AddNoteForm"
 import Note from "../../components/Note/Note"
 import * as notesAPI from '../../utilities/notes-api'
+import './Notes.css'
 
 export default function Notes({user}) {
     const [notes, setNotes] = useState([])
@@ -48,10 +49,15 @@ export default function Notes({user}) {
           <AddNoteForm user={user} addNote={addNote} />
           { sortedNotes.length > 0 ?
             <div>
-                <button onClick={onClick}>{buttonText}</button>
-                {sortedNotes.map((note, idx) => (
-                    <Note note={note} editNote={editNote} deleteNote={deleteNote} key={idx} />
-                ))}
+                <div className="header-toggle">
+                    <h2 className="header">{user.name}'s Notes</h2>
+                    <button className="toggle" onClick={onClick}>{buttonText}</button>
+                </div>
+                <ol className="note-list">
+                    {sortedNotes.map((note, idx) => (
+                        <Note note={note} editNote={editNote} deleteNote={deleteNote} key={idx} />
+                    ))}
+                </ol>
             </div>
             :
             <h1>No Notes Yet!</h1>

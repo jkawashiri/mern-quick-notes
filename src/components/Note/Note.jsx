@@ -1,5 +1,6 @@
 import EditNoteForm from "../EditNoteForm/EditNoteForm"
 import { useState } from "react"
+import './Note.css'
 
 export default function Note({note, editNote, deleteNote}) {
     const [clicked, setClicked] = useState(true)
@@ -11,16 +12,16 @@ export default function Note({note, editNote, deleteNote}) {
         setClicked(clicked => !clicked)
     }
     return (
-        <div>
+        <li className="note">
             { clicked ?
                 <>
-                    {note.text} - {formattedDate} 
+                    {note.text} - <span className="date">{formattedDate}</span>
                     <button onClick={onClick}>Edit</button>
                     <button onClick={handleDeleteNote}>X</button>
                 </>
             :
                 <EditNoteForm editNote={editNote} onClick={onClick} note={note.text} noteId={note._id} />
             }
-        </div>
+        </li>
     )
 }
